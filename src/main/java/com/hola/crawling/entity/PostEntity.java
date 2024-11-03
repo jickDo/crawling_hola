@@ -38,12 +38,12 @@ public class PostEntity {
 	@EqualsAndHashCode.Include
 	String externalId;
 
-	@Column(name = "language")
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+	@Column(name = "language_list")
+	@OneToMany(mappedBy = "postEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<LanguageEntity> languageEntities = new ArrayList<>();
 
-	@Column(name = "position")
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+	@Column(name = "position_list")
+	@OneToMany(mappedBy = "postEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<PositionEntity> positionEntities = new ArrayList<>();
 
 	boolean isClosed;
