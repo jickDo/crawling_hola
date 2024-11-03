@@ -39,3 +39,5 @@ out/
 *.yaml
 .DS_Store
 *.sql
+
+/chromedriver-mac-arm64
