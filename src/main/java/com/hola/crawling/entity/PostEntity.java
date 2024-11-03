@@ -28,7 +28,7 @@ import lombok.experimental.FieldDefaults;
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "posts")
-public class Post {
+public class PostEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "post_id")
@@ -40,11 +40,11 @@ public class Post {
 
 	@Column(name = "language")
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-	List<Language> languages = new ArrayList<>();
+	List<LanguageEntity> languageEntities = new ArrayList<>();
 
 	@Column(name = "position")
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-	List<Position> positions = new ArrayList<>();
+	List<PositionEntity> positionEntities = new ArrayList<>();
 
 	boolean isClosed;
 
