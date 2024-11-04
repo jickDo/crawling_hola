@@ -1,16 +1,10 @@
 package com.hola.crawling.entity;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -38,40 +32,4 @@ public class PostEntity {
 	@EqualsAndHashCode.Include
 	String externalId;
 
-	@Column(name = "language_list")
-	@OneToMany(mappedBy = "postEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-	List<LanguageEntity> languageEntities = new ArrayList<>();
-
-	@Column(name = "position_list")
-	@OneToMany(mappedBy = "postEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-	List<PositionEntity> positionEntities = new ArrayList<>();
-
-	boolean isClosed;
-
-	@Column
-	LocalDateTime startDate;
-
-	@Column
-	LocalDateTime endDate;
-
-	@Column
-	String type;
-
-	@Column
-	String onlineOrOffline;
-
-	@Column
-	String contactType;
-
-	@Column
-	String expectedPeriod;
-
-	@Column
-	String title;
-
-	@Column
-	LocalDateTime createdAt;
-
-	@Column
-	String state;
 }
