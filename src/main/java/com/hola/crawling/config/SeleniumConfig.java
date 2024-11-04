@@ -14,11 +14,11 @@ import org.springframework.context.annotation.Configuration;
 public class SeleniumConfig {
 
 	@Value("${webdriver.chrome.driver}")
-	private String chromeDriverPath;
+	private String CHROME_DRIVER_PATH;
 
 	@Bean
 	public WebDriver webDriver() {
-		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
 
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless");
