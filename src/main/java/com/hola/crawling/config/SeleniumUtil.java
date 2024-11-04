@@ -28,15 +28,6 @@ public class SeleniumUtil {
 		}
 	}
 
-	public static String safeGetText(WebElement element) {
-		try {
-			return element.getText();
-		} catch (Exception e) {
-			log.error("Get text failed", e);
-			return "";
-		}
-	}
-
 	public static void waitForClickable(WebDriver driver, By locator, Duration timeout) {
 		new WebDriverWait(driver, timeout)
 			.until(ExpectedConditions.elementToBeClickable(locator));
