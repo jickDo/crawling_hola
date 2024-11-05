@@ -21,8 +21,10 @@ public class FacadeService {
 	public void crawlAndSave() {
 		List<String> crawlingIds = crawlingService.crawlHola();
 
-		mailService.sendBatchMailMessages(crawlingIds);
+		List<String> nonDuplicatedIds = domainService.findNonDuplicateExternalIds(crawlingIds);
 
-		domainService.saveAllPostsFromExternalIds(crawlingIds);
+		mailService.notifyNewPosts(nonDuplicatedIds);
+
+		domainService.savePosts(nonDuplicatedIds);
 	}
 }
