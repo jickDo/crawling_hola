@@ -1,6 +1,8 @@
 package com.hola.crawling.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -20,17 +22,20 @@ public class DomainService {
 
 	private final PostRepository postRepository;
 
-	public void saveAllPostsFromExternalIds(List<String> externalIds) {
-		List<String> newExternalIds = externalIds.stream()
-			.filter(id -> !postRepository.findExistingExternalIds(externalIds).contains(id))
+	public List<String> findNonDuplicateExternalIds(List<String> externalIds) {
+		Set<String> existingIds = new HashSet<>(postRepository.findExistingExternalIds(externalIds));
+		return externalIds.stream()
+			.filter(id -> !existingIds.contains(id))
 			.toList();
+	}
 
-		if (!newExternalIds.isEmpty()) {
-			postRepository.saveAll(newExternalIds.stream()
-				.map(id -> PostEntity.builder()
-					.externalId(id)
-					.build())
-				.collect(Collectors.toList()));
-		}
+	public void savePosts(List<String> externalIds) {
+		List<PostEntity> newPosts = externalIds.stream()
+			.map(id -> PostEntity.builder()
+				.externalId(id)
+				.build())
+			.collect(Collectors.toList());
+
+		postRepository.saveAll(newPosts);
 	}
 }
