@@ -18,19 +18,21 @@ public class SeleniumConfig {
 
 	@Bean
 	public WebDriver webDriver() {
-		System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
 
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless");
 		options.addArguments("--no-sandbox");
 		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--remote-allow-origins=*");
-
 		options.addArguments("--disable-gpu");
 		options.addArguments("--window-size=1920,1080");
 		options.addArguments("--lang=ko");
 
-		return new ChromeDriver(options);
+		try {
+			return new ChromeDriver(options);
+		} catch (Exception e) {
+			throw new RuntimeException("WebDriver 초기화 실패", e);
+		}
 	}
 
 	@Bean
