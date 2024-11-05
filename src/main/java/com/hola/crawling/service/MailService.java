@@ -27,7 +27,7 @@ public class MailService {
 
 	private static final long DELAY_BETWEEN_EMAILS = 1000;
 
-	public void sendBatchMailMessages(List<String> ids) {
+	public void notifyNewPosts(List<String> ids) {
 		ids.forEach(id -> {
 			try {
 				sendSimpleMailMessage(id);
