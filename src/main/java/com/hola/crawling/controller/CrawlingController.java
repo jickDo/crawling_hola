@@ -37,4 +37,6 @@ public class CrawlingController {
 		facadeService.crawlAndSave();
 		return ResponseEntity.ok().build();
 	}
+
+	//수동호출용 ci cd환경에서 쓸일없음
 }
