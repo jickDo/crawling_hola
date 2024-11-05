@@ -9,9 +9,6 @@ jobs:
   crawl:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
       - name: submodule
         uses: actions/checkout@v3
         with:
@@ -39,8 +36,6 @@ jobs:
       - name: Build and Run
         run: |
           ./gradlew bootRun
-        env:
-          SPRING_PROFILES_ACTIVE: prod
 
       - name: Notify on Success
         if: success()
