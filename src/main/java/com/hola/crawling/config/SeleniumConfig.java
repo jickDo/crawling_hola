@@ -6,15 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SeleniumConfig {
-
-	@Value("${webdriver.chrome.driver}")
-	private String CHROME_DRIVER_PATH;
 
 	@Bean
 	public WebDriver webDriver() {
