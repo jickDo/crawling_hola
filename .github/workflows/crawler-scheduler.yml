@@ -32,7 +32,7 @@ jobs:
 
       - name: Build and Run
         run: |
-          ./gradlew bootRun --args='--crawling.site.hola=${{ secrets.HOLA_URL }} --spring.mail.username=${{ secrets.MAIL_USERNAME }} --api.key=${{ secrets.API_KEY }}'
+          ./gradlew bootRun
         env:
           SPRING_PROFILES_ACTIVE: prod
 
