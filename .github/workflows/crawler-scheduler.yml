@@ -1,0 +1,45 @@
+name: Crawler Scheduler
+
+on:
+  schedule:
+    - cron: '0 23,10 * * *'    # 한국 시간 오전 8시, 오후 7시
+  workflow_dispatch:
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Setup Chrome and ChromeDriver
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Setup Virtual Display
+        run: |
+          export DISPLAY=:99
+          sudo Xvfb -ac :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build and Run
+        run: |
+          ./gradlew bootRun
+        env:
+          SPRING_PROFILES_ACTIVE: prod
+
+      - name: Notify on Success
+        if: success()
+        run: echo "크롤링이 성공적으로 완료되었습니다."
+
+      - name: Notify on Failure
+        if: failure()
+        run: echo "크롤링 실행 중 오류가 발생했습니다."
