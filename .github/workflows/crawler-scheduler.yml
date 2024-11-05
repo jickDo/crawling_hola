@@ -12,6 +12,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: submodule
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          token: ${{ secrets.SUBMODULE_TOKEN }}
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
