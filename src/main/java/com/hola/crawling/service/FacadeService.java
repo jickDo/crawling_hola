@@ -16,9 +16,12 @@ public class FacadeService {
 
 	private final CrawlingService crawlingService;
 	private final DomainService domainService;
+	private final MailService mailService;
 
 	public void crawlAndSave() {
 		List<String> crawlingIds = crawlingService.crawlHola();
+
+		mailService.sendBatchMailMessages(crawlingIds);
 
 		domainService.saveAllPostsFromExternalIds(crawlingIds);
 	}
