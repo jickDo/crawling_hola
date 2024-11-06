@@ -20,15 +20,6 @@ jobs:
           submodules: true
           token: ${{ secrets.SUBMODULE_TOKEN }}
 
-      - name: Check files
-        run: |
-          echo "Current directory:"
-          pwd
-          echo "List files:"
-          ls -la
-          echo "Check application.yml:"
-          find . -name "application.yml"
-
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:

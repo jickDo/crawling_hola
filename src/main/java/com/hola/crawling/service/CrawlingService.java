@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.hola.crawling.config.SeleniumUtil;
@@ -25,8 +24,7 @@ public class CrawlingService {
 	private static final int MAX_PAGES = 5;
 	private static final Duration TIMEOUT = Duration.ofSeconds(10);
 
-	@Value("${crawling.site.hola}")
-	private String CRAWLING_HOLA;
+	private static final String CRAWLING_HOLA = "https://holaworld.io";
 
 	public List<String> crawlHola() {
 		List<String> studyIds = new ArrayList<>();
