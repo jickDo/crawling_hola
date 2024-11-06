@@ -8,6 +8,11 @@ on:
 jobs:
   crawl:
     runs-on: ubuntu-latest
+    env:
+      SPRING_DATASOURCE_URL: ${{ secrets.DB_URL }}
+      SPRING_DATASOURCE_USERNAME: ${{ secrets.DB_USERNAME }}
+      SPRING_DATASOURCE_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
     steps:
       - name: submodule
         uses: actions/checkout@v3
