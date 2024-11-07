@@ -55,10 +55,12 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-tasks {
-    copy {
-        from("../crawling_hola_secret")
-        include("*.yml")
-        into("src/main/resources")
-    }
+tasks.register('copySecrets', Copy) {
+    from("../crawling_hola_secret")
+    include("*.yml")
+    into("src/main/resources")
+}
+
+tasks.named('bootRun') {
+    dependsOn 'copySecrets'
 }

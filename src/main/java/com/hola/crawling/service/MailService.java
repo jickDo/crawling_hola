@@ -22,9 +22,8 @@ public class MailService {
 	@Value("${spring.mail.username}")
 	private String MY_EMAIL_ADDRESS;
 
-	@Value("${crawling.site.hola}")
-	private String HOLA_ADDRESS;
-
+	private static final String HOLA_ADDRESS = "https://holaworld.io";
+	
 	private static final long DELAY_BETWEEN_EMAILS = 1000;
 
 	public void notifyNewPosts(List<String> ids) {
